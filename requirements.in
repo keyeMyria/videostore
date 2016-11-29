@@ -12,3 +12,7 @@ psycopg2                # PostgreSQL driver
 
 unipath
 pytz
+
+# Model factories
+factory-boy
+fake-factory
