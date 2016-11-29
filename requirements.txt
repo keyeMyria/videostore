@@ -7,6 +7,7 @@
 alembic==0.8.9            # via flask-alembic
 decorator==4.0.10         # via ipython, traitlets
 flask-alembic==2.0.1
+flask-script==2.0.5
 flask-sqlalchemy==2.1
 flask==0.10.1
 ipdb==0.10.1
