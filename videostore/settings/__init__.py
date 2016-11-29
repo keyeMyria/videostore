@@ -1,13 +1,13 @@
 class Test:
-    FOO = 'test'
+    SQLALCHEMY_DATABASE_URI = "postgresql://videostore:videostore@localhost:5432/videostore_test"
 
 
 class Development:
-    FOO = 'development'
+    SQLALCHEMY_DATABASE_URI = "postgresql://videostore:videostore@localhost:5432/videostore_dev"
 
 
 class Production:
-    FOO = 'production'
+    SQLALCHEMY_DATABASE_URI = "postgresql://videostore:videostore@localhost:5432/videostore"
 
 
 environments = {
@@ -15,3 +15,4 @@ environments = {
     'development': Development,
     'production': Production,
 }
+    
