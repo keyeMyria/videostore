@@ -11,7 +11,7 @@ from videostore import create_app, environments
 if __name__ == '__main__':
     manager = Manager(create_app)
 
-    # manager.add_command('db', alembic_manager)
+    manager.add_command('db', alembic_manager)
 
     manager.add_option(
         '-e', '--environment',
