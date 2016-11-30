@@ -6,6 +6,10 @@ from ..db import db
 from .timestamped_mixin import TimestampedModelMixin
 
 
+def password_hash(password):
+    return "aaaaaaaaaaaaaa"
+
+
 class User(TimestampedModelMixin, db.Model):
     __tablename__ = 'users'
 
@@ -27,5 +31,4 @@ class User(TimestampedModelMixin, db.Model):
     @password.setter
     def password(self, new_password):
         self.plaintext_password = new_password
-        # self._password = password_hash(new_password)
-        self._password = new_password
+        self._password = password_hash(new_password)
