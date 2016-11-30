@@ -1,3 +1,4 @@
+# Flask stuff
 flask < 0.11.0
 flask-sqlalchemy
 flask-alembic
@@ -10,9 +11,20 @@ ipdb
 # SQLAlchemy
 psycopg2                # PostgreSQL driver
 
+# Some generally useful things
 unipath
 pytz
+tzlocal
 
 # Model factories
 factory-boy
 fake-factory
+
+# Test stuff
+pytest
+pytest-flask
+pytest-colordots
+pytest-spec
+pytest-cov
+vcrpy
+httpretty

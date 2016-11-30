@@ -5,6 +5,8 @@
 #    pip-compile --output-file requirements.txt requirements.in
 #
 alembic==0.8.9            # via flask-alembic
+blessings==1.6            # via pytest-colordots
+coverage==4.2             # via pytest-cov
 decorator==4.0.10         # via ipython, traitlets
 factory-boy==2.7.0
 fake-factory==0.7.2
@@ -12,6 +14,7 @@ flask-alembic==2.0.1
 flask-script==2.0.5
 flask-sqlalchemy==2.1
 flask==0.10.1
+httpretty==0.8.14
 ipdb==0.10.1
 ipython-genutils==0.1.0   # via traitlets
 ipython==5.1.0
@@ -19,22 +22,34 @@ itsdangerous==0.24        # via flask
 jinja2==2.8               # via flask
 mako==1.0.6               # via alembic
 markupsafe==0.23          # via jinja2, mako
+mock==2.0.0               # via pytest-spec
+pbr==1.10.0               # via mock
 pexpect==4.2.1            # via ipython
 pickleshare==0.7.4        # via ipython
 prompt-toolkit==1.0.9     # via ipython
 psycopg2==2.6.2
 ptyprocess==0.5.1         # via pexpect
+py==1.4.31                # via pytest
 pygments==2.1.3           # via ipython
+pytest-colordots==0.1
+pytest-cov==2.4.0
+pytest-flask==0.10.0
+pytest-spec==1.0.1
+pytest==3.0.4
 python-dateutil==2.6.0    # via fake-factory
 python-editor==1.0.3      # via alembic
 pytz==2016.7
+pyyaml==3.12              # via vcrpy
 simplegeneric==0.8.1      # via ipython
-six==1.10.0               # via fake-factory, prompt-toolkit, python-dateutil, traitlets
+six==1.10.0               # via fake-factory, mock, prompt-toolkit, python-dateutil, traitlets, vcrpy
 sqlalchemy==1.1.4         # via alembic, flask-alembic, flask-sqlalchemy
 traitlets==4.3.1          # via ipython
+tzlocal==1.3
 unipath==1.1
+vcrpy==1.10.3
 wcwidth==0.1.7            # via prompt-toolkit
-werkzeug==0.11.11         # via flask
+werkzeug==0.11.11         # via flask, pytest-flask
+wrapt==1.10.8             # via vcrpy
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools                # via ipdb, ipython
