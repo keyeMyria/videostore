@@ -11,14 +11,15 @@ ipdb
 # SQLAlchemy
 psycopg2                # PostgreSQL driver
 
-# Some generally useful things
-unipath
+# Some generally useful things every project should have
 pytz
 tzlocal
+pycountry
 
-# Model factories
-factory-boy
-fake-factory
+# Auth stuff
+PyJWT
+cryptography >= 1.3
+passlib
 
 # Test stuff
 pytest
@@ -28,3 +29,10 @@ pytest-spec
 pytest-cov
 vcrpy
 httpretty
+
+# Model factories
+factory-boy
+fake-factory
+
+# deployment stuff
+gunicorn
