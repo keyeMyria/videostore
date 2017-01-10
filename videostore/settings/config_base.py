@@ -51,6 +51,7 @@ class ConfigBase:
     # Flask config
     # --------------------------------------------------------------------------
     SECRET_KEY = None
+    JWT_EXPIRES_IN = None
 
     # --------------------------------------------------------------------------
     # Flask-Alembic config
@@ -89,6 +90,7 @@ class ConfigBase:
 
         section = config_parser['Flask']
         self.SECRET_KEY = section.get('secret_key', fallback='')
+        self.JWT_EXPIRES_IN = section.getint('jwt_expired_in_seconds', fallback=30)
 
         section = config_parser['Database']
         self.SQLALCHEMY_DATABASE_URI = section.get('sqlalchemy_uri', fallback='')
@@ -105,6 +107,9 @@ class ConfigBase:
 
         if not self.SQLALCHEMY_DATABASE_URI:
             errors['SQLALCHEMY_DATABASE_URI'] = "Can't be blank"
+
+        if not self.JWT_EXPIRES_IN:
+            errors['JWT_EXPIRES_IN'] = "Can't be zero"
 
         if errors:
             raise ImproperlyConfiguredError(errors)
