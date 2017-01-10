@@ -22,19 +22,3 @@ class LeafSubclassRetriever:
 
 def leaf_subclasses(klass):
     return LeafSubclassRetriever(klass).value()
-
-
-def import_from_string(full_name):
-    """
-    Used to obtain various objects (classes, variables, functions...) from
-    string paths.
-    Usage:
-        import_from_string('dspmobi_backend.models.Campaign')
-        import_from_string('dspmobi_backend.models.campaign.query.CAMPAIGN_STATUSES')
-    """
-    import importlib
-
-    module, obj_name = full_name.rsplit('.', 1)
-    obj = getattr(importlib.import_module(module), obj_name)
-
-    return obj

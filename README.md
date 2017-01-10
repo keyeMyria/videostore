@@ -84,4 +84,11 @@ movies = category.movies()
 # ...
 ~~~
 
+## Application routes
+
+~~~
+source .venv/bin/activate
+python manage.py routes
+~~~
+
 ## Logging in and making requests

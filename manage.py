@@ -13,6 +13,8 @@ if __name__ == '__main__':
 
     manager.add_command('my_fancy_task', scripts.MyFancyTask)
 
+    manager.add_command('routes', scripts.Routes)
+
     manager.add_option(
         '-e', '--environment',
         default='development',

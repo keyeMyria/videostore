@@ -1,10 +1,8 @@
 import abc
 import configparser
-import glob
 import logging
 import logging.handlers
 import os
-import shutil
 import socket
 from datetime import datetime
 
@@ -64,6 +62,7 @@ class ConfigBase:
     # Flask-SQLAlchemy config
     # --------------------------------------------------------------------------
     SQLALCHEMY_DATABASE_URI = None
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # --------------------------------------------------------------------------
     # Logging config
