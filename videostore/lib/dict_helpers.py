@@ -1,4 +1,3 @@
-
 def except_keys(dictionary, keys):
     if dictionary:
         key_set = set(dictionary.keys()) - set(keys)

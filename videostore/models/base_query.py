@@ -1,5 +1,6 @@
 from flask.ext.sqlalchemy import BaseQuery as FlaskSqlAlchemyBaseQuery
 
+
 class BaseQuery(FlaskSqlAlchemyBaseQuery):
 
     @property

@@ -12,8 +12,3 @@ def user(db):
 @pytest.fixture
 def plaintext_password():
     return "password"
-
-
-@pytest.fixture
-def hashed_password(plaintext_password):
-    return password_hash(plaintext_password)

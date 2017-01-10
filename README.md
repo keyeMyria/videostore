@@ -60,6 +60,13 @@ source .venv/bin/activate
 py.test
 ~~~
 
+or, for spec output:
+
+~~~
+source .venv/bin/activate
+py.test --spec
+~~~
+
 ## Seeding database with fake development data
 
 ~~~
