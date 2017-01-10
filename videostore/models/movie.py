@@ -11,3 +11,11 @@ class Movie(TimestampedModelMixin, db.Model):
     title = db.Column(
         db.String(255), nullable=False, unique=True, index=True
     )
+
+    #: belongs_to Category
+    category_id = db.Column(
+        db.BigInteger,
+        db.ForeignKey('categories.id', ondelete='RESTRICT'),
+        nullable=False, index=True
+    )
+    category = db.relationship('Category', back_populates='movies', uselist=False)

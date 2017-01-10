@@ -1,17 +1,23 @@
-from datetime import datetime
-
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from ..db import db
+from ..lib import password_hash
 from .timestamped_mixin import TimestampedModelMixin
-
-
-def password_hash(password):
-    return "aaaaaaaaaaaaaa"
 
 
 class User(TimestampedModelMixin, db.Model):
     __tablename__ = 'users'
+
+    STATUSES = {
+        'archived': -1,
+        'locked': 0,
+        'active': 1,
+    }
+
+    ROLES = {
+        'user': 1,
+        'admin': 2
+    }
 
     def __init__(self, *args, **kwargs):
         self.plaintext_password = None
@@ -22,6 +28,14 @@ class User(TimestampedModelMixin, db.Model):
         db.String(255), nullable=False, unique=True, index=True
     )
     email = db.Column(db.String(255), nullable=False, index=True)
+    role = db.Column(
+        db.SmallInteger, nullable=False,
+        default=ROLES['user'], server_default=str(ROLES['user'])
+    )
+    status = db.Column(
+        db.SmallInteger, nullable=False,
+        default=STATUSES['locked'], server_default=str(STATUSES['locked'])
+    )
     _password = db.Column("password", db.String(255), nullable=False)
 
     @hybrid_property

@@ -59,3 +59,5 @@ pip install -r requirements.txt
 source .venv/bin/activate
 py.test
 ~~~
+
+## Logging in and making requests
