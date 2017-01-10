@@ -39,7 +39,7 @@ pyasn1==0.1.9             # via cryptography
 pycountry==17.1.8
 pycparser==2.17           # via cffi
 pygments==2.1.3           # via ipython
-PyJWT==1.4.2
+pyjwt==1.4.2
 pytest-colordots==0.1
 pytest-cov==2.4.0
 pytest-flask==0.10.0
@@ -54,6 +54,7 @@ six==1.10.0               # via cryptography, fake-factory, mock, prompt-toolkit
 sqlalchemy==1.1.4         # via alembic, flask-alembic, flask-sqlalchemy
 traitlets==4.3.1          # via ipython
 tzlocal==1.3
+unipath==1.1
 vcrpy==1.10.3
 wcwidth==0.1.7            # via prompt-toolkit
 werkzeug==0.11.11         # via flask, pytest-flask

@@ -1,17 +1,17 @@
 from flask.ext.script import Manager
-
 from flask_alembic.cli.script import manager as alembic_manager
-from videostore import create_app, environments
 
-#  models, scripts, services)
-
-# from videostore.db import db, factories
-# from videostore.settings import constants
+from videostore import create_app, environments, lib, models, scripts
+from videostore.db import db, factories
 
 if __name__ == '__main__':
     manager = Manager(create_app)
 
+    alembic_manager.add_command('seed', scripts.Seed)
+
     manager.add_command('db', alembic_manager)
+
+    manager.add_command('my_fancy_task', scripts.MyFancyTask)
 
     manager.add_option(
         '-e', '--environment',
@@ -23,13 +23,15 @@ if __name__ == '__main__':
 
     # Add some more stuff to manager shell so we don't need to import that
     # manually every time
-    # @manager.shell
-    # def make_shell_context():
-    #     context = dict(app=create_app, db=db)
-    #     context.update(vars(constants))
-    #     context.update(vars(models))
-    #     context.update(vars(factories))
-    #     context.update(vars(helpers))
-    #     return context
+    @manager.shell
+    def make_shell_context():
+        context = dict(
+            app=create_app, db=db,
+            models=models,
+            factories=factories,
+            lib=lib
+        )
+        context.update(vars(models))
+        return context
 
     manager.run()

@@ -20,6 +20,7 @@ pycountry
 PyJWT
 cryptography >= 1.3
 passlib
+unipath
 
 # Test stuff
 pytest

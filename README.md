@@ -60,4 +60,21 @@ source .venv/bin/activate
 py.test
 ~~~
 
+## Seeding database with fake development data
+
+~~~
+source .venv/bin/activate
+python manage.py db seed
+~~~
+
+## Application shell
+
+~~~
+python manage.py shell
+user = factories.UserFactory()
+category = models.Category.query.first()
+movies = category.movies()
+# ...
+~~~
+
 ## Logging in and making requests
