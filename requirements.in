@@ -26,6 +26,7 @@ passlib
 requests
 marshmallow
 ostruct
+paginate
 
 # Test stuff
 pytest
@@ -38,7 +39,7 @@ httpretty
 
 # Model factories
 factory-boy
-fake-factory
+faker >= 0.6.0
 
 # deployment stuff
 gunicorn

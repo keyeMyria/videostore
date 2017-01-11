@@ -11,7 +11,8 @@ coverage==4.2             # via pytest-cov
 cryptography==1.7.1
 decorator==4.0.10         # via ipython, traitlets
 factory-boy==2.7.0
-fake-factory==0.7.2
+fake-factory==0.7.2       # via factory-boy
+faker==0.7.7
 flask-alembic==2.0.1
 flask-script==2.0.5
 flask-sqlalchemy==2.1
@@ -29,6 +30,7 @@ markupsafe==0.23          # via jinja2, mako
 marshmallow==2.11.1
 mock==2.0.0               # via pytest-spec
 ostruct==2.1.2
+paginate==0.5.6
 passlib==1.7.0
 pbr==1.10.0               # via mock
 pexpect==4.2.1            # via ipython
@@ -47,13 +49,13 @@ pytest-cov==2.4.0
 pytest-flask==0.10.0
 pytest-spec==1.0.1
 pytest==3.0.4
-python-dateutil==2.6.0    # via fake-factory
+python-dateutil==2.6.0    # via fake-factory, faker
 python-editor==1.0.3      # via alembic
 pytz==2016.7
 pyyaml==3.12              # via vcrpy
 requests==2.12.4
 simplegeneric==0.8.1      # via ipython
-six==1.10.0               # via cryptography, fake-factory, mock, prompt-toolkit, python-dateutil, traitlets, vcrpy
+six==1.10.0               # via cryptography, fake-factory, faker, mock, prompt-toolkit, python-dateutil, traitlets, vcrpy
 sqlalchemy==1.1.4         # via alembic, flask-alembic, flask-sqlalchemy
 traitlets==4.3.1          # via ipython
 tzlocal==1.3
