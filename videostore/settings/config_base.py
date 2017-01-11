@@ -7,8 +7,9 @@ import socket
 from datetime import datetime
 
 import pytz
-import tzlocal
 from unipath import Path
+
+import tzlocal
 
 
 class ImproperlyConfiguredError(RuntimeError):
@@ -89,7 +90,7 @@ class ConfigBase:
 
         section = config_parser['Flask']
         self.SECRET_KEY = section.get('secret_key', fallback='')
-        self.JWT_EXPIRES_IN = section.getint('jwt_expired_in_seconds', fallback=30)
+        self.JWT_EXPIRES_IN = section.getint('jwt_expires_in_seconds', fallback=45)
 
         section = config_parser['Database']
         self.SQLALCHEMY_DATABASE_URI = section.get('sqlalchemy_uri', fallback='')

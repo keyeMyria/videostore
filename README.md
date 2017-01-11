@@ -91,4 +91,75 @@ source .venv/bin/activate
 python manage.py routes
 ~~~
 
-## Logging in and making requests
+## Example of logging in and making requests
+
+Make sure you'd ran `python manage.py db seed` because that will create test
+user account. Than start dev server:
+
+~~~
+python manage.py runserver
+~~~
+
+1) Acquire JWT token:
+
+Request:
+~~~
+POST /api/login HTTP/1.1
+Host: localhost:5000
+Content-Type: application/json
+
+{
+    "username_or_email": "test",
+    "password": "test"
+}
+~~~
+
+Response:
+~~~
+{
+  "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJ1c2VyX3JvbGVzIjpbInVzZXIiXSwiZXhwIjoxNDg0MjE1MzA1LCJ1c2VyX2lkIjoiMSJ9.8U9RgGGmwVgwBmY4PHjtOxp3HpnxGSSUro5uzFTouGj30J7lbJrXqQrSPvQmkQgnfiJ60PXaRVPKJTEurlCmoQ",
+  "api_key": "b9f91d35da8607ca26346c453a36166cbcf7314c7b9589cd7393a3b79275627d",
+  "expires_in": 86400,
+  "token_type": "Bearer"
+}
+~~~
+
+2) For any further requests, you must use JWT access_token acquired from `/api/login`. Ie, to get a list of movie categories:
+
+Request:
+~~~
+GET /api/categories HTTP/1.1
+Host: localhost:5000
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QiLCJ1c2VyX3JvbGVzIjpbInVzZXIiXSwiZXhwIjoxNDg0MjE1MzA1LCJ1c2VyX2lkIjoiMSJ9.8U9RgGGmwVgwBmY4PHjtOxp3HpnxGSSUro5uzFTouGj30J7lbJrXqQrSPvQmkQgnfiJ60PXaRVPKJTEurlCmoQ
+Cache-Control: no-cache
+~~~
+
+Response:
+~~~
+{
+  "objects": [
+    {
+      "created_at": "2017-01-11T09:52:23+00:00",
+      "id": 1,
+      "name": "Action",
+      "updated_at": "2017-01-11T09:52:23+00:00"
+    },
+    {
+      "created_at": "2017-01-11T09:52:23+00:00",
+      "id": 2,
+      "name": "SciFi",
+      "updated_at": "2017-01-11T09:52:23+00:00"
+    },
+    {
+      "created_at": "2017-01-11T09:52:23+00:00",
+      "id": 3,
+      "name": "Horror",
+      "updated_at": "2017-01-11T09:52:23+00:00"
+    }
+  ],
+  "page": 1,
+  "pages": 1,
+  "per_page": 20,
+  "total": 3
+}
+~~~

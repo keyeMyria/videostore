@@ -1,3 +1,4 @@
+from sqlalchemy import or_
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from ..db import db

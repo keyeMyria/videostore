@@ -3,8 +3,9 @@ import hashlib
 import hmac
 import uuid
 
-import jwt
 from passlib.context import CryptContext
+
+import jwt
 
 from .dict_helpers import inverted
 
@@ -56,7 +57,7 @@ def _find_user(jwt_payload):
     return user
 
 
-def verify_jwt(request, secret_key, auth_disabled=False):
+def verify_jwt(request, secret_key):
     """
     Verifies the JWT and JWT payload in request using provided secret key.
     """

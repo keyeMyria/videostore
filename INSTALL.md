@@ -45,7 +45,7 @@ $ sudo apt-get install postgresql postgresql-contrib
 ~~~
 $ sudo -u postgres psql
 postgres=# CREATE ROLE videostore LOGIN PASSWORD 'videostore' VALID UNTIL 'infinity';
-postgres=# CREATE DATABASE videostore WITH ENCODING='UTF8' OWNER=videostore CONNECTION LIMIT=-1;
+postgres=# CREATE DATABASE videostore_dev WITH ENCODING='UTF8' OWNER=videostore CONNECTION LIMIT=-1;
 postgres=# CREATE DATABASE videostore_test WITH ENCODING='UTF8' OWNER=videostore CONNECTION LIMIT=-1;
 ~~~
 
