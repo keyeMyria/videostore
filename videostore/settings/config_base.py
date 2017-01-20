@@ -7,9 +7,8 @@ import socket
 from datetime import datetime
 
 import pytz
-from unipath import Path
-
 import tzlocal
+from unipath import Path
 
 
 class ImproperlyConfiguredError(RuntimeError):
@@ -64,6 +63,14 @@ class ConfigBase:
     # --------------------------------------------------------------------------
     SQLALCHEMY_DATABASE_URI = None
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # If set to True SQLAlchemy will log all the statements issued to stderr
+    # which can be useful for debugging.
+    # We are setting this to False because SQLAlchemy tries to log UTF-8 data
+    # as Latin1 logger which then causes chaos further down the stack
+    # Instead all this, we manage SQLAlchemy loggers on our own - redirecting
+    # these messages to file (ie. development.sqlalchemy.log)
+    SQLALCHEMY_ECHO = False
+    LOG_SQL = True
 
     # --------------------------------------------------------------------------
     # Logging config
@@ -79,7 +86,7 @@ class ConfigBase:
     ADDITIONAL_LOGGERS = [
         'alembic',
         'werkzeug',
-        'sqlalchemy',
+        # 'sqlalchemy',
         'sqlalchemy.engine',
     ]
 
@@ -178,10 +185,27 @@ class ConfigBase:
             ]
         )
 
+        # Explicitly shut down SQLAlchemy loggers even if they are not
+        # enumerated in self.ADDITIONAL_LOGGERS
+        # We will check self.LOG_SQL and configre them below
+        self._cleanup_logger_handlers(logging.getLogger('sqlalchemy'))
+        self._cleanup_logger_handlers(logging.getLogger('sqlalchemy.engine'))
+
         for logger in loggers:
-            self._cleanup_logger_handlers(logger)
-            # logger should pass all messages to handler, and handlers' log
-            # level then decides what will be logged.
+            if 'sql' not in logger.name.lower():
+                self._cleanup_logger_handlers(logger)
+                # logger should pass all messages to handler, and handlers' log
+                # level then decides what will be logged.
+                logger.setLevel(logging.DEBUG)
+                for handler in handlers:
+                    logger.addHandler(handler)
+
+        logger = logging.getLogger('sqlalchemy')
+        logger.addHandler(logging.NullHandler())
+
+        if self.LOG_SQL:
+            logger = logging.getLogger('sqlalchemy.engine')
+            logger.setLevel(logging.INFO)
             logger.setLevel(logging.DEBUG)
             for handler in handlers:
                 logger.addHandler(handler)
