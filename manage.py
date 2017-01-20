@@ -8,6 +8,7 @@ if __name__ == '__main__':
     manager = Manager(create_app)
 
     alembic_manager.add_command('seed', scripts.Seed)
+    alembic_manager.add_command('truncate', scripts.Truncate)
 
     manager.add_command('db', alembic_manager)
 

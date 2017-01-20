@@ -1,3 +1,20 @@
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Description](#description)
+- [Installation](#installation)
+- [Running](#running)
+	- [Starting dev server](#starting-dev-server)
+	- [Application operations in `production` mode.](#application-operations-in-production-mode)
+	- [Dependencies maintenance](#dependencies-maintenance)
+	- [Running tests](#running-tests)
+	- [Seeding database with fake development data](#seeding-database-with-fake-development-data)
+	- [Application shell](#application-shell)
+- [...](#)
+	- [Application routes](#application-routes)
+	- [Example of logging in and making requests](#example-of-logging-in-and-making-requests)
+
+<!-- /TOC -->
+
 # Description
 
 Example Flask application with:
@@ -71,8 +88,10 @@ py.test --spec
 
 ~~~
 source .venv/bin/activate
-python manage.py db seed
+python manage.py db truncate && python manage.py db upgrade && python manage.py db seed
 ~~~
+
+Note that `seed` might sometimes fail on unique constraint violation. This is normal, just re-run above code until it passes
 
 ## Application shell
 
