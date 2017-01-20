@@ -41,7 +41,7 @@ class User(TimestampedModelMixin, db.Model):
         db.String(255), nullable=False, unique=True, index=True
     )
     email = db.Column(db.String(255), nullable=False, index=True)
-    role = db.Column(
+    role_enum = db.Column(
         db.SmallInteger, nullable=False,
         default=ROLES['user'], server_default=str(ROLES['user'])
     )
@@ -61,7 +61,7 @@ class User(TimestampedModelMixin, db.Model):
             status.in_(STATUSES.values())
         ),
         db.CheckConstraint(
-            role.in_(ROLES.values())
+            role_enum.in_(ROLES.values())
         ),
     )
 
@@ -77,3 +77,22 @@ class User(TimestampedModelMixin, db.Model):
     @hybrid_property
     def is_active(self):
         return self.status == self.STATUSES['active']
+
+    #: belongs_to Role
+    role_id = db.Column(
+        db.BigInteger,
+        db.ForeignKey('roles.id', ondelete='RESTRICT'),
+        nullable=False, index=True
+    )
+    role = db.relationship('Role', back_populates='users', uselist=False)
+
+    #: has_many UserDetail
+    user_details = db.relationship('UserDetail', back_populates='user', uselist=False)
+
+    #: belongs_to Country
+    country_id = db.Column(
+        db.BigInteger,
+        db.ForeignKey('countries.id', ondelete='RESTRICT'),
+        nullable=False, index=True
+    )
+    country = db.relationship('Country', back_populates='users', uselist=False)
