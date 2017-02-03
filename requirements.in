@@ -10,6 +10,7 @@ ipdb
 
 # SQLAlchemy
 psycopg2                # PostgreSQL driver
+sqlalchemy-repr         # Nice repr for model instances
 
 # Some generally useful things every project should have
 pytz
