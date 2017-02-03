@@ -18,4 +18,6 @@ class Movie(TimestampedModelMixin, db.Model):
         db.ForeignKey('categories.id', ondelete='RESTRICT'),
         nullable=False, index=True
     )
-    category = db.relationship('Category', back_populates='movies', uselist=False)
+    category = db.relationship(
+        'Category', back_populates='movies', uselist=False
+    )

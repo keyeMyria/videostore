@@ -1,8 +1,10 @@
+import random
+
 from flask import current_app
 from flask.ext.script import Command
 
 from ..db import db, factories
-from ..models import User
+from ..models import SchoolClass, Student, User
 
 
 class Seed(Command):
@@ -47,5 +49,18 @@ class Seed(Command):
 
         for user in User.query:
             db.session.add(factories.UserDetailFactory(user=user))
+
+        db.session.commit()
+
+        for i in range(1, 10):
+            db.session.add(factories.StudentFactory())
+            db.session.add(factories.SchoolClassFactory())
+
+        db.session.commit()
+
+        all_school_classes = list(SchoolClass.query.all())
+        for student in Student.query:
+            for i in range(0, 4):
+                student.school_classes.append(random.choice(all_school_classes))
 
         db.session.commit()
